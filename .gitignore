@@ -1,0 +1,21 @@
+.DS_Store
+.local/
+.data/
+dist/
+artifacts/
+node_modules/
+assets/concepts/
+assets/references/
+assets/*.zip
+design/pixso-export/
+*.log
+.env*
+
+# Local source images; the repository ships compressed runtime assets.
+assets/images/*.png
+assets/images/*.jpg
+assets/images/pieces/*.png
+*.pem
+*.key
+*.p12
+*.pfx

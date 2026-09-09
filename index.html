@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FCF8EF">
+  <meta name="description" content="原木水墨中国象棋，与好友在线对弈，也可在同一台设备轮流切磋。">
+  <title>中国象棋 · 楚河汉界，邀友一局</title>
+  <link rel="stylesheet" href="./styles.css?v=3">
+  <link rel="preload" as="image" href="./assets/images/hero.webp?v=2">
+  <script type="module" src="./game.js?v=3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <button id="home" class="brand" aria-label="中国象棋，返回大厅">中国象棋<span class="seal" aria-hidden="true">对弈</span></button>
+    <nav aria-label="页面操作"><button id="rules" class="quiet">玩法规则</button><button id="exit" class="quiet" hidden>退出</button></nav>
+  </header>
+  <main>
+    <section id="lobby" class="entry-layout">
+      <div class="story">
+        <img class="hero-art" src="./assets/images/hero.webp?v=2" alt="水墨山水前的原木红帅与黑将棋子" width="1200" height="800">
+        <div class="story-copy"><h1>楚河汉界，<br>邀友一局。</h1><p>与好友在线对弈，也可同屏切磋。</p></div>
+      </div>
+      <section class="entry-panel" aria-labelledby="entry-title">
+        <h2 id="entry-title">开始一局</h2>
+        <div class="tabs" role="tablist" aria-label="进入方式"><button id="create-tab" role="tab" aria-selected="true">创建房间</button><button id="join-tab" role="tab" aria-selected="false">加入房间</button></div>
+        <form id="entry-form">
+          <label for="nickname">你的昵称</label><input id="nickname" name="nickname" maxlength="12" placeholder="怎么称呼你？" autocomplete="nickname" required>
+          <fieldset id="seat-field"><legend>执棋选择</legend><div class="seat-choices"><label><input type="radio" name="side" value="red" checked><span>红方先行</span></label><label><input type="radio" name="side" value="black"><span>黑方</span></label></div></fieldset>
+          <div id="code-field" hidden><label for="room-code">房间号</label><input id="room-code" name="room" maxlength="6" placeholder="六位字母数字" autocomplete="off" autocapitalize="characters" spellcheck="false"><small>输入好友分享的六位房间号</small></div>
+          <p id="entry-error" class="error" role="alert"></p>
+          <button id="entry-submit" class="primary full" type="submit">创建双人房间</button>
+        </form>
+        <div class="local-entry"><button id="local-start" class="text-action">同屏双人对弈 <span aria-hidden="true">→</span></button><p>一台设备，轮流走棋</p><button id="local-resume" class="quiet full" hidden>继续上次同屏对局</button></div>
+      </section>
+    </section>
+    <section id="waiting" class="entry-layout" hidden>
+      <div class="story"><img class="hero-art" src="./assets/images/hero.webp?v=2" alt="棋子已备好" width="1200" height="800"><div class="story-copy"><h1>棋已摆好，<br>等你入座。</h1><p>把邀请分享给好友，即可开始。</p></div></div>
+      <section class="entry-panel"><h2>房间号</h2><div class="room-share"><strong id="wait-code"></strong><button id="copy-invite" class="quiet">复制邀请链接</button></div><div id="seats" class="seats"></div><p id="wait-hint" class="muted"></p><button id="start-game" class="primary full">开始对局</button><button id="leave-waiting" class="quiet full">退出房间</button></section>
+    </section>
+    <section id="play" hidden>
+      <div class="game-meta"><span id="mode-label"></span><span id="connection" role="status"></span><button id="flip" class="text-action">翻转棋盘</button></div>
+      <div class="game-layout">
+        <div class="board-column">
+          <div id="top-player" class="player-strip"></div>
+          <div id="board" class="board" aria-label="中国象棋，九路十线棋盘">
+            <div class="board-art"><img src="./assets/images/board.webp?v=2" alt="" draggable="false" width="1182" height="1330"></div>
+            <div id="intersections" class="intersections"></div><div id="pieces" class="pieces"></div><div id="preview" class="preview" hidden></div>
+          </div>
+          <div id="bottom-player" class="player-strip"></div>
+        </div>
+        <aside class="game-panel" aria-label="对局操作">
+          <div class="turn-message"><h2 id="turn-title"></h2><p id="turn-help"></p><p id="game-error" class="error" role="alert" aria-live="assertive"></p></div>
+          <button id="confirm" class="primary full" disabled>确认走棋</button>
+          <div class="action-row"><button id="undo" class="quiet">悔棋</button><button id="draw" class="quiet">求和</button><button id="resign" class="quiet">结束</button></div>
+          <div id="proposal" class="proposal" hidden></div>
+          <button id="restart-local" class="quiet full" hidden>重新开始</button>
+          <details id="history-details" open><summary>棋谱 <span id="move-count">0 手</span></summary><ol id="history" class="history"></ol><button id="export" class="text-action" hidden>导出棋谱</button></details>
+        </aside>
+      </div>
+      <section id="result" class="result-panel" hidden aria-labelledby="result-title"><img id="result-piece" src="./assets/images/pieces/red-K.webp?v=2" alt="" width="100" height="100"><div><h2 id="result-title"></h2><p id="result-reason"></p></div><div class="result-actions"><button id="rematch" class="primary">邀请再来一局</button><button id="result-home" class="quiet">返回大厅</button></div></section>
+    </section>
+  </main>
+  <section id="settlement" class="settlement" hidden aria-labelledby="settlement-title">
+    <div class="settlement-sheet">
+      <p class="settlement-eyebrow">楚河汉界 · 本局终章</p>
+      <div class="settlement-emblem"><span class="victory-seal" aria-hidden="true">胜</span><img id="settlement-piece" src="./assets/images/pieces/red-K.webp?v=2" alt="" width="240" height="240"></div>
+      <h1 id="settlement-title" tabindex="-1"></h1>
+      <p id="settlement-player" class="settlement-player"></p>
+      <p id="settlement-reason" class="settlement-reason"></p>
+      <div class="settlement-stats"><div><strong id="settlement-moves"></strong><span>本局手数</span></div><div><strong id="settlement-captures"></strong><span>吃子数量</span></div></div>
+      <div id="settlement-proposal" class="proposal" hidden></div>
+      <button id="settlement-rematch" class="primary full">再来一局</button>
+      <div class="settlement-links"><button id="settlement-review" class="text-action">查看棋局</button><span aria-hidden="true">·</span><button id="settlement-home" class="text-action">返回大厅</button></div>
+    </div>
+  </section>
+  <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-body"><button id="dialog-close" class="dialog-close quiet" aria-label="关闭">关闭</button><h2 id="dialog-title"></h2><div id="dialog-content"></div><div id="dialog-actions" class="dialog-actions"></div></div></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript>请启用 JavaScript 后开始对弈。</noscript>
+</body>
+</html>

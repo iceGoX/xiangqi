@@ -1,0 +1,14 @@
+{
+  "name": "xiangqi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node server/app.js",
+    "start": "node server/app.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node --check game.js && node --check shared/engine.js && node --check server/app.js",
+    "build": "node tools/build.js"
+  }
+}
