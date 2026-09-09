@@ -2,6 +2,12 @@
 
 原木棋盘、水墨背景的中国象棋，支持同屏双人和在线私人房间。原生浏览器前端与 Node.js 房间服务共用规则引擎，无第三方运行时依赖。
 
+## 游戏预览
+
+<img src="docs/images/game-preview.webp" alt="中国象棋 Pixso 对局设计预览" width="960">
+
+*Pixso 对局设计预览。*
+
 ## 本地运行
 
 需要 Node.js 22 或更高版本。
