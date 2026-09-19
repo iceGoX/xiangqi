@@ -9,8 +9,8 @@ const ROOT = fileURLToPath(new URL('../', import.meta.url));
 const hash = value => createHash('sha256').update(value).digest('hex');
 const fail = (status, message) => Object.assign(new Error(message), { status });
 const codePattern = /^[A-HJ-NP-Z2-9]{6}$/;
-const MIME = { '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.css':'text/css; charset=utf-8', '.json':'application/json', '.webp':'image/webp', '.woff2':'font/woff2', '.ttf':'font/ttf', '.svg':'image/svg+xml' };
-const STATIC = new Set(['index.html','styles.css','game.js','shared/engine.js','shared/motion.js','assets/images/hero.webp','assets/images/landscape.webp','assets/images/board.webp','release.json',...['red','black'].flatMap(s=>['K','A','B','N','R','C','P'].map(t=>`assets/images/pieces/${s}-${t}.webp`)), 'assets/fonts/body.woff2','assets/fonts/heading.woff2']);
+const MIME = { '.png':'image/png', '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.css':'text/css; charset=utf-8', '.json':'application/json', '.webp':'image/webp', '.woff2':'font/woff2', '.ttf':'font/ttf', '.svg':'image/svg+xml' };
+const STATIC = new Set(['assets/icons/favicon-32-v1.png','assets/icons/apple-touch-icon-v1.png','assets/icons/favicon-64-v1.png','index.html','styles.css','game.js','shared/engine.js','shared/motion.js','assets/images/hero.webp','assets/images/landscape.webp','assets/images/board.webp','release.json',...['red','black'].flatMap(s=>['K','A','B','N','R','C','P'].map(t=>`assets/images/pieces/${s}-${t}.webp`)), 'assets/fonts/body.woff2','assets/fonts/heading.woff2']);
 
 export function createApp({ dataFile = resolve(ROOT,'.data/rooms.json'), root = ROOT, clock = Date.now, trustProxy = false } = {}) {
   let rooms = new Map();

@@ -45,3 +45,7 @@ npm run build
 运行 `dist/server/app.js`，用 `HOST`、`PORT` 指定回环监听地址；`DATA_FILE` 应指向发布目录之外的持久存档文件。服务使用原子重命名保存房间。经本机可信反向代理转发时可设置 `TRUST_PROXY=1` 并由代理覆盖 `X-Real-IP`。
 
 代理应保留 `/xiangqi/` 路径，对 SSE 关闭缓冲并允许长连接。`/xiangqi/api/health` 返回运行版本；部署后比对 `release.json` 与构建清单，并验证双端对局。生产路径、服务配置和回滚记录保存在忽略目录 `.local/`。
+
+## 网页图标
+
+`assets/icons/` 保存从 Pixso 导出的独立图标：浏览器小图标和 180px 主屏幕图标。替换图标时同步更新页面引用与静态资源／发布清单；文件名中的版本用于避免旧图标缓存。
