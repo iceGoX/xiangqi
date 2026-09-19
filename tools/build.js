@@ -4,7 +4,7 @@ import {dirname,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=fileURLToPath(new URL('../',import.meta.url)),output=resolve(root,'dist');
-const files=['index.html','styles.css','game.js','package.json','server/app.js','shared/engine.js','shared/motion.js',
+const files=['assets/icons/favicon-32-v1.png','assets/icons/apple-touch-icon-v1.png','assets/icons/favicon-64-v1.png','index.html','styles.css','game.js','package.json','server/app.js','shared/engine.js','shared/motion.js',
   ...['hero','landscape','board'].map(name=>`assets/images/${name}.webp`),
   ...['red','black'].flatMap(side=>['K','A','B','N','R','C','P'].map(type=>`assets/images/pieces/${side}-${type}.webp`))].sort();
 const contents=await Promise.all(files.map(async path=>({path,bytes:await readFile(resolve(root,path))})));
